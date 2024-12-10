@@ -1,0 +1,31 @@
+{
+  "name": "alm-service",
+  "version": "1.0.0",
+  "description": "ALM-SERVICE",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:watch": "nodemon -r dotenv/config src/server.ts",
+    "copy-files": "npm run copy-swagger",
+    "copy-swagger": "cp ./src/swagger.json ./dist/"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "pino": "^9.5.0",
+    "pino-pretty": "^13.0.0",
+    "sequelize": "^6.37.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-dist": "^5.18.2",
+    "swagger-ui-express": "^5.0.1",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/pino": "^7.0.4",
+    "@types/sequelize": "^4.28.20",
+    "nodemon": "^3.1.7",
+    "typescript": "^5.7.2"
+  }
+}

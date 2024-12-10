@@ -1,0 +1,26 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "ALM Server",
+      "description": "Documentation of ALM Server API"
+    },
+    "host": "localhost:3333",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "Endpoints for users in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+    }
+  }
