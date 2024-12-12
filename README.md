@@ -18,3 +18,14 @@ IP= seu-ip
 
 
 Certifique-se de substituir os valores acima se necessário para adequar às suas configuraçõoes
+
+## Como Executar
+
+Para rodar o projeto, siga os passos abaixo:
+
+1. Certifique-se de que o serviço **[ALM-Assets](https://github.com/EPS-ALM/alm-assets)** está em execução. 
+
+2. No terminal, execute o comando abaixo para iniciar os containers:
+   ```bash
+   docker-compose up --build
+
