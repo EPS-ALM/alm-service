@@ -1,24 +1,19 @@
 import { Model, InferAttributes, InferCreationAttributes, DataTypes } from 'sequelize';
 import db from '../index';
 
-export class Cash extends Model<InferAttributes<Cash>, InferCreationAttributes<Cash>> {
+export class Clients extends Model<InferAttributes<Clients>, InferCreationAttributes<Clients>> {
     declare id?: number;
-    declare invested: number;
-    declare inCash: number;
+    declare number: number;
 }
 
-Cash.init({
+Clients.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    invested: {
+    number: {
         type: DataTypes.DOUBLE,
-        allowNull: false
-    },
-    inCash: {
-        type: DataTypes.BOOLEAN,
         allowNull: false
     }
 }, {

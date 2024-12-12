@@ -2,7 +2,7 @@ import express from 'express';
 import { routes } from './routes/routes';
 import errorHandler from './config/ErrorHandler';
 import { CronJobs } from './cron';
-import { Assets, Cash, EfficientFrontier } from './db/model';
+import { Assets, Cash, Clients, EfficientFrontier } from './db/model';
 import { markowitz } from './routines/MarkowitzRoutine';
 import { populate } from 'dotenv';
 
@@ -37,6 +37,7 @@ class App {
         await Assets.sync({ alter: this.isDev });
         await EfficientFrontier.sync({ alter: this.isDev });
         await Cash.sync({ alter: this.isDev });
+        await Clients.sync({ alter: this.isDev });
     }
 
     async populateDatabase() {
@@ -46,6 +47,14 @@ class App {
             await Cash.create({
                 invested: 100000,
                 inCash: 0
+            });
+        }
+
+        const clientsDb = await Clients.findOne();
+        
+        if(!clientsDb){
+            await Clients.create({
+                number: 10,
             });
         }
     }
