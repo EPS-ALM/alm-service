@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "ALM-SERVICE",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "start:watch": "nodemon -r dotenv/config src/server.ts",
     "copy-files": "npm run copy-swagger",
     "copy-swagger": "cp ./src/swagger.json ./dist/"
