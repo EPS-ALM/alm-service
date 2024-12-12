@@ -2,8 +2,9 @@ import express from 'express';
 import { routes } from './routes/routes';
 import errorHandler from './config/ErrorHandler';
 import { CronJobs } from './cron';
-import { Assets, EfficientFrontier } from './db/model';
+import { Assets, Cash, EfficientFrontier } from './db/model';
 import { markowitz } from './routines/MarkowitzRoutine';
+import { populate } from 'dotenv';
 
 require('dotenv').config();
 
@@ -28,12 +29,25 @@ class App {
         const cronJobs = new CronJobs();
         cronJobs.scheduleJobs();
 
+        await this.populateDatabase();
         await markowitz();
     }
 
     async dbInit() {
         await Assets.sync({ alter: this.isDev });
         await EfficientFrontier.sync({ alter: this.isDev });
+        await Cash.sync({ alter: this.isDev });
+    }
+
+    async populateDatabase() {
+        const cashDb = await Cash.findOne();
+        
+        if(!cashDb){
+            await Cash.create({
+                invested: 100000,
+                inCash: 0
+            });
+        }
     }
 
     middlewares() {
