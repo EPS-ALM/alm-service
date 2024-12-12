@@ -36,16 +36,25 @@ describe("MarkowitzService", () => {
         .fn()
         .mockResolvedValue(null);
 
+        const upsertSpy = jest
+            .spyOn(Assets, "upsert")
+        
+        const updateSpy = jest
+            .spyOn(Assets, "update")
+        
+        const createSpy = jest
+            .spyOn(EfficientFrontier, "create")
+
         // Execute
         await service.execute();
 
         // Assertions
         expect(mockGateway.execute).toHaveBeenCalledWith({ tickers: AssetsConstants.ASSETS });
-        expect(Assets.update).toHaveBeenCalledWith({ isActive: false }, { where: { isActive: true } });
-        expect(Assets.upsert).toHaveBeenCalledTimes(2);
-        expect(Assets.upsert).toHaveBeenCalledWith({ ticker: "AAPL", allocation: 0.4, isActive: true });
-        expect(Assets.upsert).toHaveBeenCalledWith({ ticker: "MSFT", allocation: 0.6, isActive: true });
-        expect(EfficientFrontier.create).toHaveBeenCalledWith({ base64: "mock_base64_plot" });
+        expect(updateSpy).toHaveBeenCalledWith({ isActive: false }, { where: { isActive: true } });
+        expect(upsertSpy).toHaveBeenCalledTimes(2);
+        expect(upsertSpy).toHaveBeenCalledWith({ ticker: "AAPL", allocation: 0.4, isActive: true });
+        expect(upsertSpy).toHaveBeenCalledWith({ ticker: "MSFT", allocation: 0.6, isActive: true });
+        expect(createSpy).toHaveBeenCalledWith({ base64: "mock_base64_plot" });
     });
 
     it("should update existing efficient frontier if it exists", async () => {
@@ -62,9 +71,12 @@ describe("MarkowitzService", () => {
         .fn()
         .mockResolvedValue({ id: 1 });
 
+        const updateSpy = jest
+            .spyOn(EfficientFrontier, "update")
+
         await service.execute();
 
-        expect(EfficientFrontier.update).toHaveBeenCalledWith(
+        expect(updateSpy).toHaveBeenCalledWith(
             { base64: "mock_base64_plot" },
             { where: { id: 1 } }
         );
@@ -73,10 +85,19 @@ describe("MarkowitzService", () => {
     it("should handle gateway failure", async () => {
         mockGateway.execute.mockRejectedValue(new Error("Gateway error"));
 
+        const upsertSpy = jest
+            .spyOn(Assets, "upsert")
+        
+        const updateSpy = jest
+            .spyOn(Assets, "update")
+
+        const createSpy = jest
+            .spyOn(EfficientFrontier, "create")
+
         await expect(service.execute()).rejects.toThrow("Gateway error");
-        expect(Assets.update).not.toHaveBeenCalled();
-        expect(Assets.upsert).not.toHaveBeenCalled();
-        expect(EfficientFrontier.create).not.toHaveBeenCalled();
+        expect(updateSpy).not.toHaveBeenCalled();
+        expect(upsertSpy).not.toHaveBeenCalled();
+        expect(createSpy).not.toHaveBeenCalled();
     });
 
     it("should handle database errors gracefully", async () => {
@@ -93,9 +114,14 @@ describe("MarkowitzService", () => {
         .fn()
         .mockRejectedValue(new Error("Database error"));
 
+        const upsertSpy = jest
+            .spyOn(Assets, "upsert")
+        
+        const createSpy = jest
+            .spyOn(EfficientFrontier, "create")
 
         await expect(service.execute()).rejects.toThrow("Database error");
-        expect(Assets.upsert).not.toHaveBeenCalled();
-        expect(EfficientFrontier.create).not.toHaveBeenCalled();
+        expect(upsertSpy).not.toHaveBeenCalled();
+        expect(createSpy).not.toHaveBeenCalled();
     });
 });
