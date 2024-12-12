@@ -1,6 +1,11 @@
 import express from 'express';
 import { routes } from './routes/routes';
 import errorHandler from './config/ErrorHandler';
+import { CronJobs } from './cron';
+import { Assets, EfficientFrontier } from './db/model';
+import { markowitz } from './routines/MarkowitzRoutine';
+
+require('dotenv').config();
 
 const swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
@@ -20,9 +25,15 @@ class App {
 
     async init() {
         await this.dbInit();
+        const cronJobs = new CronJobs();
+        cronJobs.scheduleJobs();
+
+        await markowitz();
     }
 
     async dbInit() {
+        await Assets.sync({ alter: this.isDev });
+        await EfficientFrontier.sync({ alter: this.isDev });
     }
 
     middlewares() {
