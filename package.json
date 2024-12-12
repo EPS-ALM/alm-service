@@ -4,6 +4,8 @@
   "description": "ALM-SERVICE",
   "scripts": {
     "test": "jest --coverage",
+    "build": "tsc && npm run copy-files",
+    "start": "node dist/server.js",
     "start:watch": "nodemon -r dotenv/config src/server.ts",
     "copy-files": "npm run copy-swagger",
     "copy-swagger": "cp ./src/swagger.json ./dist/"
