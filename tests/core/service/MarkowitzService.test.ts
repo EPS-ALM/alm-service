@@ -3,6 +3,8 @@ import { Assets } from "../../../src/db/model/Assets";
 import { EfficientFrontier } from "../../../src/db/model/EfficientFrontier";
 import AssetsConstants from "../../../src/utils/constants/AssetsConstants";
 
+jest.mock("../../../src/db/model");
+
 const mockGateway = {
     execute: jest.fn(),
 };
