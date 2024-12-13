@@ -18,7 +18,7 @@ Cash.init({
         allowNull: false
     },
     inCash: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.DOUBLE,
         allowNull: false
     }
 }, {
