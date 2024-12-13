@@ -1,3 +1,4 @@
+import { logger } from "../../config/AppLogger";
 import MarkowitzGateway from "../../dataprovider/gateway/MarkowitzGateway";
 import { MarkowitzRequest } from "../../dataprovider/request/MarkowitzRequest";
 import { MarkowitzResponse } from "../../dataprovider/response/MarkowitzResponse";
@@ -18,14 +19,20 @@ export default class MarkowitzService implements BaseService {
         const response: MarkowitzResponse = await this.gateway.execute(tickersRequest);
 
         await Assets.update({isActive: false}, {where: {isActive: true}});
-        
-        for(const asset of response.portfolio) {
-            await Assets.upsert({
-                ticker: asset.ticker,
-                allocation: asset.allocation,
-                isActive: true
-            });
+        try{
+            for(const asset of response.portfolio) {
+                await Assets.upsert({
+                    ticker: asset.ticker,
+                    allocation: asset.allocation,
+                    isActive: true
+                });
+            }
+        } catch(e){
+            logger.error("Certifique que o serviço de ativos esteja rodando!!! Erro -> ");
+
+            throw e;
         }
+        
         
         const efDb = await EfficientFrontier.findOne();
 

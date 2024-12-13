@@ -5,6 +5,7 @@ import { CronJobs } from './cron';
 import { Assets, Cash, Clients, EfficientFrontier } from './db/model';
 import { markowitz } from './routines/MarkowitzRoutine';
 import { populate } from 'dotenv';
+import cors from 'cors';
 
 require('dotenv').config();
 
@@ -60,6 +61,7 @@ class App {
     }
 
     middlewares() {
+        this.server.use(cors())
         this.server.use(express.json());
     }
 
