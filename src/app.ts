@@ -4,6 +4,7 @@ import errorHandler from './config/ErrorHandler';
 import { CronJobs } from './cron';
 import { Assets, Cash, Clients, EfficientFrontier } from './db/model';
 import { markowitz } from './routines/MarkowitzRoutine';
+import { forecastVar } from './routines/ForecastVarRoutine';
 import { populate } from 'dotenv';
 import cors from 'cors';
 
@@ -32,6 +33,7 @@ class App {
 
         await this.populateDatabase();
         await markowitz();
+        await forecastVar();
     }
 
     async dbInit() {
