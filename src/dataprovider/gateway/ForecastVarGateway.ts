@@ -7,7 +7,7 @@ import { logger } from "../../config/AppLogger";
 
 export default class ForecastVarGateway {
     public async execute(tickers: ForecastVarRequest): Promise<ForecastVarResponse>{
-        const url = UrlConstants.PATH_MARKOVITZ;
+        const url = UrlConstants.PATH_FORECASTVAR;
 
         const response: ForecastVarResponse = await axios.post(url, tickers).then(response => {
             return response.data;

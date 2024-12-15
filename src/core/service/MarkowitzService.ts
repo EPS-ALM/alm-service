@@ -23,7 +23,7 @@ export default class MarkowitzService implements BaseService {
             for(const asset of response.portfolio) {
                 await Assets.upsert({
                     ticker: asset.ticker,
-                    allocation: asset.allocation,
+                    markowitzAllocation: asset.allocation,
                     isActive: true
                 });
             }

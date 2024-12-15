@@ -2,11 +2,9 @@ import { logger } from "../../config/AppLogger";
 import ForecastVarGateway from "../../dataprovider/gateway/ForecastVarGateway";
 import { ForecastVarRequest } from "../../dataprovider/request/ForecastVarRequest";
 import { ForecastVarResponse } from "../../dataprovider/response/ForecastVarResponse";
-import Forecast from "../../db/model/Forecast";
-import { EfficientFrontier } from "../../db/model/EfficientFrontier";
+import { Assets } from "../../db/model";
 import AssetsConstants from "../../utils/constants/AssetsConstants";
 import BaseService from "./BaseService";
-import { Op } from "sequelize";
 
 export default class ForecastVarService implements BaseService {
     public constructor(
@@ -18,17 +16,15 @@ export default class ForecastVarService implements BaseService {
 
         const response: ForecastVarResponse = await this.gateway.execute(tickersRequest);
 
-        await Forecast.update({isActive: false}, {where: {isActive: true}});
         try{
-            for(const allocation of response.forecast_allocation) {
-                await Forecast.upsert({
-                    ticker: allocation.Ativo,
-                    allocation: allocation["Peso Sugerido (%)"],
-                    isActive: true,
-                    historicalAnnualReturn: response.historical_metrics["Retorno Anualizado (%)"][allocation.Ativo] || null,
-                    historicalAnnualVolatility: response.historical_metrics["Volatilidade Anualizada (%)"][allocation.Ativo] || null,
-                    forecastAnnualReturn: response.forecast_metrics["Retorno Anualizado (%)"][allocation.Ativo] || null,
-                    forecastAnnualVolatility: response.forecast_metrics["Volatilidade Anualizada (%)"][allocation.Ativo] || null
+            for(const allocation of response.data) {
+                await Assets.upsert({
+                    ticker: allocation.ativo,
+                    historicalAnnualReturn: allocation.historical_metrics["Retorno Anualizado (%)"],
+                    historicalAnnualVolatility:allocation.historical_metrics["Volatilidade Anualizada (%)"],
+                    forecastAnnualReturn: allocation.forecast_metrics["Retorno Anualizado (%)"],
+                    forecastAnnualVolatility: allocation.forecast_metrics["Volatilidade Anualizada (%)"],
+                    forecastVarAllocation: allocation.forecast_allocation
                 });
             }
         } catch(e){

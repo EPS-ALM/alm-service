@@ -16,7 +16,11 @@ export default class GetAllocationService implements BaseService{
         assets.forEach((asset) => {
             portfolio.push({
                 name: asset.ticker, 
-                allocation: asset.allocation
+                allocation: asset.markowitzAllocation ?? 0,
+                historicalAnnualReturn: asset.historicalAnnualReturn ?? 0,
+                historicalAnnualVolatility: asset.historicalAnnualVolatility ?? 0,
+                forecastAnnualReturn: asset.forecastAnnualReturn ?? 0,
+                forecastAnnualVolatility: asset.forecastAnnualVolatility ?? 0
             });
         });
 
