@@ -5,5 +5,9 @@ export interface GetAllocationResponse {
 
 export interface AssetsNameAllocation {
     name: string,
-    allocation: number
+    allocation: number,
+    historicalAnnualReturn: number,
+    historicalAnnualVolatility: number,
+    forecastAnnualReturn: number,
+    forecastAnnualVolatility: number
 }
