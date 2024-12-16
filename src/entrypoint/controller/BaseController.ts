@@ -8,7 +8,6 @@ export default abstract class BaseController {
         const result = schema.validate(req.body);
 
         if (result.error) {
-            logger.error(result.error, "Erro 422 para o usuario")
             throw new ErrorResponse(422, result.error.message, null);
         }
     }

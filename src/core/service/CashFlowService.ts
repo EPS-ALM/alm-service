@@ -10,7 +10,7 @@ export default class CashFlowService implements BaseService {
 
         if(cashDb && clientsDb){
             const newClientsNumber = clientsDb.number + 5;
-            const newCashValue = cashDb.inCash + (1500 * newClientsNumber);
+            const newCashValue = cashDb.inCash + (300 * newClientsNumber);
 
             await Cash.update({
                 inCash: newCashValue
