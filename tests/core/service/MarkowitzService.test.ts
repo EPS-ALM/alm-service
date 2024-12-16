@@ -63,16 +63,16 @@ describe("MarkowitzService", () => {
         expect(mockGateway.execute).toHaveBeenCalledWith({ tickers: AssetsConstants.ASSETS });
         expect(updateSpy).toHaveBeenCalledWith({ isActive: false }, { where: { isActive: true } });
         expect(upsertSpy).toHaveBeenCalledTimes(2);
-        expect(upsertSpy).toHaveBeenCalledWith({ ticker: "AAPL", allocation: 0.4, isActive: true });
-        expect(upsertSpy).toHaveBeenCalledWith({ ticker: "MSFT", allocation: 0.6, isActive: true });
+        expect(upsertSpy).toHaveBeenCalledWith({ ticker: "AAPL", markowitzAllocation: 0.4, isActive: true });
+        expect(upsertSpy).toHaveBeenCalledWith({ ticker: "MSFT", markowitzAllocation: 0.6, isActive: true });
         expect(createSpy).toHaveBeenCalledWith({ base64: "mock_base64_plot" });
     });
 
     it("should update existing efficient frontier if it exists", async () => {
         const mockResponse = {
             portfolio: [
-                { ticker: "AAPL", allocation: 0.4 },
-                { ticker: "MSFT", allocation: 0.6 },
+                { ticker: "AAPL", markowitzAllocation: 0.4 },
+                { ticker: "MSFT", markowitzAllocation: 0.6 },
             ],
             plot_base64: "mock_base64_plot",
         };
