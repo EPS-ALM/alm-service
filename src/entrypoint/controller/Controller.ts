@@ -28,8 +28,6 @@ export default class Controller<
                 const response = await this.service.execute(params);
                 res.status(statusCode).send(response);
             } else {
-                logger.error("Erro 422 para o usuario faltando parametros")
-                console.log("params -> ", params)
                 throw new ErrorResponse(422, "Missing query params", null);
             }
         }

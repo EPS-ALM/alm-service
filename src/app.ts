@@ -1,6 +1,14 @@
 import express from 'express';
 import { routes } from './routes/routes';
 import errorHandler from './config/ErrorHandler';
+import { CronJobs } from './cron';
+import { Assets, Cash, Clients, EfficientFrontier } from './db/model';
+import { markowitz } from './routines/MarkowitzRoutine';
+import { forecastVar } from './routines/ForecastVarRoutine';
+import { populate } from 'dotenv';
+import cors from 'cors';
+
+require('dotenv').config();
 
 const swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
@@ -20,12 +28,42 @@ class App {
 
     async init() {
         await this.dbInit();
+        const cronJobs = new CronJobs();
+        cronJobs.scheduleJobs();
+
+        await this.populateDatabase();
+        await markowitz();
+        await forecastVar();
     }
 
     async dbInit() {
+        await Assets.sync({ alter: this.isDev });
+        await EfficientFrontier.sync({ alter: this.isDev });
+        await Cash.sync({ alter: this.isDev });
+        await Clients.sync({ alter: this.isDev });
+    }
+
+    async populateDatabase() {
+        const cashDb = await Cash.findOne();
+        
+        if(!cashDb){
+            await Cash.create({
+                invested: 100000,
+                inCash: 0
+            });
+        }
+
+        const clientsDb = await Clients.findOne();
+        
+        if(!clientsDb){
+            await Clients.create({
+                number: 10,
+            });
+        }
     }
 
     middlewares() {
+        this.server.use(cors())
         this.server.use(express.json());
     }
 

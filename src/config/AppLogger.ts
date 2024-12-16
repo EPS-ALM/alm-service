@@ -7,6 +7,6 @@ export const logger = pino({
             colorize: true
         }
     },
-    name: 'gambe_server',
+    name: 'alm_server',
     level: 'debug'
 });
