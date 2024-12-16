@@ -13,7 +13,7 @@ export default class RiskNotebookGateway extends BaseGateway{
         const response: RiskNotebookResponse = await axios.get(urlWithParams).then(response => {
             return response.data;
         }).catch(error => {
-            logger.error(error, "Erro ao chamar alm-assets markowitz")
+            logger.error(error, "Erro ao chamar alm-risk notebook")
             return null
         })
 
