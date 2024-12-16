@@ -3,13 +3,6 @@ import { Assets } from "../../../src/db/model/Assets";
 import { EfficientFrontier } from "../../../src/db/model/EfficientFrontier";
 import AssetsConstants from "../../../src/utils/constants/AssetsConstants";
 
-export const Sequelize = jest.fn().mockImplementation(() => ({
-    authenticate: jest.fn(),
-    define: jest.fn(),
-    query: jest.fn(),
-    close: jest.fn(),
-}));
-
 jest.mock('sequelize');
 
 const mockGateway = {
