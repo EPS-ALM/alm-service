@@ -39,7 +39,7 @@ describe("CashFlowService", () => {
     expect(Cash.findOne).toHaveBeenCalledTimes(1);
     expect(Clients.findOne).toHaveBeenCalledTimes(1);
     expect(Cash.update).toHaveBeenCalledWith(
-      { inCash: 1000 +  * (300 + 5) },
+      { inCash: 1000 + 300 * (10 + 5) },
       { where: { id: 1 } }
     );
   });
