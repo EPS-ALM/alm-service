@@ -1,0 +1,56 @@
+CONTRATO DE COMPROMISSO DE INVESTIMENTO EM FUNDO DE PENSÃO
+
+Pelo presente instrumento particular, as partes a seguir qualificadas:
+
+§ I - CONTRATANTE: [NOME_COMPLETO_CLIENTE], inscrito no CPF sob o número [CPF_CLIENTE], residente e domiciliado em [ENDERECO_CLIENTE];
+
+§ II - CONTRATADA: [NOME_EMPRESA], inscrita no CNPJ sob o número [CNPJ_EMPRESA], com sede em [ENDEREÇO_EMPRESA];
+
+Resolvem celebrar o presente Contrato de Compromisso de Investimento em Fundo de Pensão, doravante denominado "Contrato", que se regerá pelas cláusulas e condições seguintes, bem como pela legislação aplicável.
+
+§ CLÁUSULA PRIMEIRA - DO OBJETO DO CONTRATO
+
+O presente Contrato tem como objeto a formalização do compromisso de investimento por parte do CONTRATANTE em fundo de pensão gerido pela CONTRATADA, bem como a regulação dos direitos e deveres de ambas as partes.
+
+§ CLÁUSULA SEGUNDA - DA BASE LEGAL
+
+Este contrato rege-se pelas seguintes disposições legais:
+
+Inciso I - Lei nº 6.385/1976 - Dispõe sobre o mercado de valores mobiliários e institui a Comissão de Valores Mobiliários (CVM);
+Inciso II - Lei nº 4.595/1964 - Regula o Sistema Financeiro Nacional;
+Inciso III - Instrução CVM nº 555/2014 - Estabelece normas aplicáveis à constituição, administração e divulgação de informações dos fundos de investimento.
+
+§ CLÁUSULA TERCEIRA - DAS OBRIGAÇÕES DAS PARTES
+
+• Do CONTRATANTE:
+  Inciso I - Depositar mensalmente a quantia de R$ [VALOR_CONTRATO] na conta indicada pela CONTRATADA;
+  Inciso II - Respeitar os prazos e condições estabelecidos neste contrato.
+
+• Da CONTRATADA:
+  Inciso I - Garantir a gestão adequada dos recursos investidos, conforme a legislação vigente;
+  Inciso II - Devolver ao CONTRATANTE, ao final do prazo estipulado, o montante correspondente à soma dos valores depositados acrescidos dos rendimentos, aplicando-se uma taxa de juros mensal de [TAXA_JUROS_CONTRATO]%.
+
+§ CLÁUSULA QUARTA - DO PRAZO E VIGÊNCIA
+
+Este Contrato tem vigência pelo período de [TEMPO_MESES_CONTRATO], contados a partir da data de sua assinatura, podendo ser renovado mediante anuência de ambas as partes.
+
+§ CLÁUSULA QUINTA - DAS CONSEQUÊNCIAS PARA A QUEBRA DE CONTRATO
+
+Inciso I - Caso o CONTRATANTE deseje rescindir o contrato antes do prazo acordado, será aplicada uma multa de 10% sobre o saldo acumulado no fundo.
+Inciso II - Em caso de descumprimento pela CONTRATADA, esta deverá restituir ao CONTRATANTE o saldo acumulado integral, acrescido de uma multa de 5% sobre o valor total.
+
+§ CLÁUSULA SEXTA - DA TRANSPARÊNCIA E COMUNICAÇÃO
+
+A CONTRATADA compromete-se a disponibilizar ao CONTRATANTE relatórios mensais detalhados sobre o desempenho do investimento, bem como a garantir o acesso às informações financeiras por meio de [ex.: plataforma online ou envio por e-mail].
+
+§ CLÁUSULA SÉTIMA - DO FORO
+
+Fica eleito o foro da comarca de [LOCAL_CONTRATO], para dirimir quaisquer questões oriundas deste contrato, com renúncia expressa a qualquer outro, por mais privilegiado que seja.
+
+E, por estarem assim justas e acordadas, as partes assinam o presente instrumento em 2 vias de igual teor e forma.
+
+[LOCAL_CONTRATO, [DATA_ATUAL].
+
+CONTRATANTE: __________________________________________  
+CONTRATADA: __________________________________________
+
